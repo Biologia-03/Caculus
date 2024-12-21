@@ -1,0 +1,480 @@
+\documentclass[a4paper,12pt,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{tcolorbox} %tạo màu nền cho văn bản
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsfonts} 
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+
+\newcommand{\abs}[1]{\left| #1 \right|} %định nghĩa lệnh \abs là trị tuyệt đối
+
+\title{CACULUS OPENSTAX 1}
+\author{Le Xuan Duan}
+
+%Căn lề cho văn bản 
+\geometry{ 
+        left=3cm, % Lề trái 
+        right=3cm, % Lề phải 
+        top=2.5cm, % Lề trên 
+        bottom=2.5cm, % Lề dưới 
+        headheight=15pt, % Chiều cao phần đầu trang 
+        headsep=1cm, % Khoảng cách từ phần đầu trang đến phần nội dung 
+        }
+        
+\setlength{\parindent}{0pt}
+\captionsetup{margin=40pt}
+\captionsetup{labelfont=bf}
+
+\begin{document}
+%Trang bìa
+\maketitle 
+
+%Chuyển trang mới
+\chapter{Hàm số và đồ thị}
+
+\section{Ôn tập về hàm số}
+
+Trong phần này, chúng ta sẽ tìm hiểu định nghĩa chính thức về hàm số cũng như các cách biểu diễn hàm số, bao gồm bảng, công thức và đồ thị. Chúng ta sẽ xem xét các ký hiệu (notation) và thuật ngữ toán học liên quan đến hàm số, đồng thời ôn lại các khái niệm hợp của 2 hàm số và các tính chất đối xứng (symmetry properties) của chúng. 
+
+\subsection{Hàm số}
+
+Cho 2 tập hợp \textit{A} và \textit{B}. Một tập hợp các cặp có thứ tự (x,y), trong đó x thuộc A và y thuộc B, được gọi là một quan hệ từ A đến B. Quan hệ này xác định một mối liên hệ giữa 2 tập hợp. Hàm số là một trường hợp đặc biệt của quan hệ, trong đó mỗi phần tử của tập hớp thứ nhất (input) được gán với duy nhất một phần tử của tập hợp thứ hai (output). Do đó với mỗi hàm số, khi biết input sẽ xác định được output tương ứng, và như vậy output chính là một hàm của input. Ví dụ, diện tích hình vuông phụ thuộc vào độ dài cạnh của nó, ta nói diện tích là hàm của độ dài cạnh. Tương tự, vận tốc rơi tự do là hàm của thời gian (v=gt).   
+
+\vspace{13pt}
+%Setup khung định nghĩa
+\begin{tcolorbox}[
+    colframe=blue!10,      % Màu viền
+    colback=blue!5,    % Màu nền (xan nhạt)
+    coltitle=black,     % Màu chữ tiêu đề
+    fonttitle=\bfseries,% Chữ đậm cho tiêu đề
+    title=Định nghĩa    % Tiêu đề của hộp
+    ]
+\textbf{Một hàm số $f$} bao gồm 3 thành phần: tập hợp các input, tập hợp các ouput và một quy tắc gán mỗi input chính xác vào một output. Tập hợp các input được gọi là \textbf{miền xác định của hàm số} (domain), còn tập hợp các ouput được gọi là \textbf{miền giá trị} (range)  
+\end{tcolorbox}
+
+\vspace{13pt}
+Ví dụ, hãy xét hàm số $f$, trong đó miền xác định là tập hợp tất cả các số thực và quy tắc là bình phương input. Sau đó, input x = 3 được gán cho output 3² = 9. Vì mọi số thực không âm đều có một căn bậc hai có giá trị thực, nên mọi số thực không âm đều là một phần tử của miền giá trị của hàm số này. Vì không có số thực nào có bình phương là âm nên các số thực âm không phải là phần tử của miền giá trị. Chúng ta kết luận rằng miền giá trị là tập hợp các số thực không âm.
+% Đặt lại header để xóa nội dung tự động
+\clearpage
+\pagestyle{fancy} % Đặt lại kiểu header
+\fancyhf{} % Xóa tất cả header và footer
+\fancyhead[L]{} % Xóa header bên trái
+
+Đối với một hàm số $f$ nói chung có miền xác định D, chúng ta thường sử dụng x để biểu thị input và y để biểu thị output liên quan đến x. Khi làm như vậy, chúng ta gọi x là biến độc lập (\textbf{independent variable}), y là biến phụ thuộc (\textbf{dependent variable}). Sử dụng ký hiệu hàm số, chúng ta viết y=$f$(x), và chúng ta đọc phương trình này là 'y bằng $f$ của x'. Đối với hàm bình phương được mô tả ở trên, chúng ta viết $f$(x) = x².
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình1.png}
+    \caption{Có thể hình dung hàm số như một thiết bị input/output}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình2.png}
+    \caption{Một hàm số ánh xạ mọi phần tử thuộc domain thành một phần tử tương ứng thuộc range. Mặc dù mỗi input chỉ dẫn đến 1 output nhưng 2 input khác nhau có thể dẫn đến cùng 1 output }
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình3.png}
+    \caption{Trong trường hợp này, hàm $f$ có domain \{1,2,3\} và range \{1,2\}. Biến độc lập là x và biến phụ thuộc là y}
+    \label{fig:enter-label}
+\end{figure}
+
+\vspace{5pt}
+Chúng ta có thể hình dung một hàm số bằng cách biểu diễn các điểm (x,y) trên mặt phẳng toạ độ (\textbf{coordinate plane}), trong đó y = $f$(x). Tập hợp các điểm này tạo nên đồ thị của hàm số (graph). Ví dụ, xét hàm số $f$(x) = 3-x với miền xác định là tập D=\{1,2,3\}. Hình 1.4 minh hoạ đồ thị của hàm số này
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình4.png}
+    \caption{Đây là hình ảnh đồ thị của hàm $f$(x) = 3 - x với miền xác định D=\{1,2,3\}. Đồ thị là tập hợp các điểm (x,$f$(x)) với mọi x thuộc D }
+    \label{fig:enter-label}
+\end{figure}
+
+\vspace{5pt}
+
+Mọi hàm số đều có một miền xác định. Tuy nhiên, đôi khi một hàm số được mô tả bằng một biểu thức cụ thể, ví dụ như $f$(x) = \( x^2 \) không kèm theo miền xác định cụ thể. Trong trường hợp này, miền xác định được ngầm hiểu là tập hợp tất cả các số thực x sao cho $f(x)$ nhận giá trị là một số thực. Ví dụ, vì mọi số thực đều có thể bình phương, nếu không có ràng buộc nào khác, ta coi miền xác định của $f(x)$ \( x^2 \) là tập hợp tất cả các số thực. Ngược lại, miền xác định của hàm căn bậc hai \(f(x) = \sqrt{x} \) chỉ cho kết quả là số thực khi x không âm. Do đó miền xác định của \(f(x) = \sqrt{x} \) là tập hợp các số thực không âm (x>0), đôi khi còn được gọi là miền tự nhiên (\textbf{natural domain}).
+
+\vspace{10pt}
+Với các hàm số $f(x) = x^2$ và \(f(x) = \sqrt{x} \), miền xác định của chúng là các tập hợp vô hạn. Rõ ràng, ta không thể liệt kê hết tất cả các phần tử. Khi mô tả một tập hợp vô hạn, việc sử dụng ký hiệu xây dựng tập hợp (\textbf{Set-builder notation}) hoặc ký hiệu khoảng (\textbf{Interval notation}) thường rất hữu ích. Để mô tả một tập con của tập hợp các số thực, ký hiệu là \(\mathbb{R}\), bằng ký hiệu xây dựng tập hợp, ta viết:
+\begin{center}
+    \{x| có tính chất  nào đó\}
+\end{center}
+Đọc là "tập hợp các x sao cho x có tính chất P". Ví dụ để biểu diễn tập hợp các số thực lớn hơn 1 và nhỏ hơn 5, ta viết
+\begin{center}
+    \{x| 1 < x < 5\}
+\end{center}
+Các số 1 và 5 được gọi là đầu mút (\textbf{endpoint}) của khoảng này. Nếu ta muốn bao gồm cả 2 điểm đầu mút, ta viết:
+\begin{center}
+\(\{x \mid 1 \leq x \leq 5\}\)
+\end{center}
+Ta có thể sử dụng ký hiệu tương tự để chỉ bao gồm một trong hai đầu mút. Để biểu diễn tập hợp các số thực không âm, ta dùng ký hiệu xây dựng tập hợp:
+\begin{center}
+\(\{x \mid 0 \leq x\}\)
+\end{center}
+Số nhỏ nhất trong tập hợp này là 0, nhưng tập hợp này không có số lớn nhất. Dùng ký hiệu khoảng, ta sử dụng ký hiệu +∞ (dương vô cùng) và viết:
+\begin{center}
+ \([0,+\infty) = \{x \mid 0 \leq x\}\)
+\end{center}
+
+
+\clearpage
+\pagestyle{fancy} % Đặt lại kiểu header
+\fancyhf{} % Xóa tất cả header và footer
+\fancyhead[L]{} % Xóa header bên trái
+
+Cần lưu ý rằng ∞ không phải là một số thực. Nó chỉ là một ký hiệu để biểu diễn tập hợp bao gồm tất cả các số thực lớn hơn hoặc bằng 0. Tương tự, để biểu diễn tập hợp các số thực không dương, ta viết:
+\begin{center}
+ \((-\infty,0] = \{x \mid x \leq 0\}\)
+\end{center}
+
+Ở đây, ký hiệu −∞ biểu thị âm vô cùng, và nó chỉ ra rằng chúng ta đang bao gồm tất cả các số nhỏ hơn hoặc bằng không, bất kể chúng nhỏ đến đâu. Tập hợp: 
+\begin{center}
+ \((-\infty,+\infty\)) = \{x| x là bất kỳ số thực nào \}
+\end{center}
+biểu thị tập hợp tất cả các số thực.
+
+\par
+\vspace{10pt}
+Một số hàm số có thể được định nghĩa bằng các phương trình khác nhau cho các phần khác nhau của miền xác định của chúng. Các loại hàm này được gọi là hàm số xác định từng khoảng (\textbf{piecewise-defined functions}). Ví dụ: giả sử chúng ta muốn định nghĩa một hàm số $f$ với miền xác định là tập hợp tất cả các số thực sao cho $f(x)$ = 3x + 1 với \( x \geq 2 \) và $f(x)$ = x² với x < 2. Chúng ta ký hiệu hàm số này bằng cách viết:
+
+\[ 
+f(x) = 
+\begin{cases} 
+3x + 1 & \text{nếu } x \geq 2 \\ 
+x^2 & \text{nếu } x < 2 
+\end{cases} 
+\]
+\vspace{10pt}
+
+Khi tính giá trị của hàm này tại một giá trị input x, phương trình được sử dụng phụ thuộc vào việc \( x \geq 2 \) hay x < 2. Ví dụ, vì 5 > 2, ta sử dụng $f(x)$ = 3x + 1 cho \( x \geq 2 \) và nhận được $f(5)$ = 3(5) + 1 = 16. Mặt khác, với x = −1, ta sử dụng $f(x)$ = x² cho x < 2 và nhận được $f(−1)$ = 1.
+
+\vspace{10pt}
+\begin{tcolorbox}
+    [
+    colframe=blue!10,      % Màu viền
+    colback=blue!10,    % Màu nền (xan nhạt)
+    ]
+\textbf{Tìm miền xác định và miền giá trị của các hàm số sau}    
+\end{tcolorbox}
+
+\vspace{10pt}
+a.$f(x)$ = (x - 4)² + 5 
+\par
+\vspace{10pt}
+Miền xác định của hàm số là tập \(\mathbb{R}\). Ta thấy: \par
+\vspace{10pt}
+(x - 4)² \(\geq 0\) với mọi x \(\in \mathbb{R} \rightarrow{}\) $f(x)$ \(\geq 5\) 
+Như vậy, miền giá trị  $f(x)$ = \{y| y\(\geq 5\) \} \par
+\vspace{10pt}
+b. $f(x)$ = \(\sqrt{3x - 1}\) - 1 \par
+\vspace{10pt}
+Tương tự, miền xác định của hàm số là x \(\geq \frac{1}{3}\) và miền giá trị $f(x)$ = \{y| y\(\geq -1\) \} \par
+\vspace{10pt}
+
+\clearpage
+\pagestyle{fancy} % Đặt lại kiểu header
+\fancyhf{} % Xóa tất cả header và footer
+\fancyhead[L]{} % Xóa header bên trái
+\subsection{Biểu diễn hàm số}
+
+Thông thường một hàm số được biểu diễn bằng một hoặc nhiều cách sau:
+\begin{itemize} 
+\item Bảng 
+\item Đồ thị 
+\item Công thức 
+\end{itemize}
+Chúng ta có thể nhận biết một hàm số ở mỗi dạng, nhưng chúng ta cũng có thể sử dụng chúng kết hợp với nhau. Chẳng hạn, chúng ta có thể vẽ các giá trị từ bảng lên đồ thị hoặc tạo một bảng từ một công thức.
+
+\subsubsection{Bảng}
+Các hàm số được mô tả bằng bảng giá trị thường xuất hiện trong các ứng dụng thực tế. Hãy xem xét ví dụ đơn giản sau. Chúng ta có thể mô tả nhiệt độ trong một ngày nhất định như một hàm của thời gian trong ngày. Giả sử chúng ta ghi lại nhiệt độ mỗi giờ trong khoảng thời gian 24 giờ bắt đầu từ nửa đêm. Chúng ta đặt biến input x là thời gian sau nửa đêm, được đo bằng giờ, và biến output y là nhiệt độ sau x giờ kể từ nửa đêm, được đo bằng độ Fahrenheit. Chúng ta ghi lại dữ liệu của mình trong Bảng 1.1
+
+\begin{table}[h!] 
+\centering 
+\small
+\begin{tabularx}{\textwidth}{|X|X|X|X|} 
+\hline 
+\textbf{Thời gian sau nửa đêm} & \textbf{Nhiệt độ (°F)} & \textbf{Thời gian sau nửa đêm} & \textbf{Nhiệt độ (°F)} \\ \hline 
+0 & 58 & 12 & 84 \\ \hline 1 & 54 & 13 & 85 \\ \hline 2 & 53 & 14 & 85 \\ \hline 3 & 52 & 15 & 83 \\ \hline 4 & 52 & 16 & 82 \\ \hline 5 & 55 & 17 & 80 \\ \hline 6 & 60 & 18 & 77 \\ \hline 7 & 64 & 19 & 74 \\ \hline 8 & 72 & 20 & 69 \\ \hline 9 & 75 & 21 & 65 \\ \hline 10 & 78 & 22 & 60 \\ \hline 11 & 80 & 23 & 58 \\ \hline \end{tabularx} \caption{Nhiệt độ theo thời gian trong ngày} \label{table:temperature} \end{table}
+
+Từ bảng, chúng ta có thể thấy rằng nhiệt độ là một hàm của thời gian, và nhiệt độ giảm, sau đó tăng, rồi lại giảm. Tuy nhiên, chúng ta không thể có được một hình dung rõ ràng về diễn biến của hàm số nếu không vẽ đồ thị của nó.
+
+\subsubsection{Đồ thị}
+
+Cho một hàm số f được mô tả bằng một bảng, chúng ta có thể cung cấp một hình ảnh trực quan của hàm số dưới dạng một đồ thị. Vẽ đồ thị các nhiệt độ được liệt kê trong \textbf{Bảng 1.1} có thể cho chúng ta một ý tưởng tốt hơn về sự biến động của chúng trong suốt cả ngày. \textbf{Hình 1.5} minh họa đồ thị của hàm nhiệt độ.
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình5.png}
+    \caption{Đồ thị tạo từ dữ liệu ở \textbf{Bảng 1.1} cho thấy nhiệt độ là hàm của thời gian}
+    \label{fig:enter-label}
+\end{figure}
+
+Từ các điểm đã vẽ trên đồ thị ở Hình 1.5, chúng ta có thể hình dung được hình dạng tổng quát của đồ thị. Thường thì việc nối các điểm này lại với nhau, vốn đại diện cho dữ liệu từ bảng, sẽ rất hữu ích. Trong ví dụ này, mặc dù chúng ta không thể đưa ra bất kỳ kết luận chắc chắn nào về nhiệt độ tại bất kỳ thời điểm nào mà nhiệt độ chưa được ghi nhận, nhưng xét đến số lượng điểm dữ liệu đã thu thập được và quy luật trong các điểm này, thì hợp lý khi cho rằng nhiệt độ tại các thời điểm khác cũng tuân theo quy luật tương tự, như chúng ta thấy trong \textbf{Hình 1.6}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình6.png}
+    \caption{Liên kết các điểm ở đồ thị \textbf{Hình 1.5} thu được mô hình chung của dữ liệu}
+    \label{fig:enter-label}
+\end{figure}
+
+\clearpage
+\subsubsection{Công thức đại số}
+
+Đôi khi, chúng ta không được cung cấp các giá trị của một hàm dưới dạng bảng, thay vào đó, chúng ta được cung cấp các giá trị trong một công thức tường minh. Các công thức xuất hiện trong nhiều ứng dụng. Ví dụ, diện tích của một hình tròn có bán kính r được cho bởi công thức A(r) = \(\pi r^2\). Khi một vật được ném lên trên từ mặt đất với vận tốc ban đầu \(v_0\) ft/s, độ cao của nó so với mặt đất từ lúc ném đến khi chạm đất được cho bởi công thức s(t) = \(16t^2 + v_0t\). Khi P đô la được đầu tư vào một tài khoản với lãi suất hàng năm r tính theo lãi kép liên tục, số tiền sau t năm được cho bởi công thức A(t) = \(Pe^{rt}\). Các công thức đại số là công cụ quan trọng để tính toán giá trị của hàm. Thông thường, chúng ta cũng biểu diễn các hàm này một cách trực quan dưới dạng đồ thị. \par
+
+\vspace{10pt}
+
+Cho một công thức đại số của một hàm số $f$, đồ thị của $f$ là tập hợp các điểm (x, $f(x)$), trong đó x thuộc miền xác định của $f$ và $f(x)$ thuộc tập giá trị. Để vẽ đồ thị của một hàm số cho bởi một công thức, việc bắt đầu bằng cách sử dụng công thức để tạo một bảng các giá trị input và output là rất hữu ích. Bởi vì miền xác định của $f$ có thể bao gồm vô số giá trị, chúng ta không thể liệt kê tất cả, nhưng việc liệt kê một số giá trị input và output có thể rất hữu ích, đó thường là một cách tốt để bắt đầu. 
+\par
+\vspace{10pt}
+
+Khi tạo một bảng các giá trị input và output, chúng ta thường kiểm tra để xác định xem 0 có phải là một giá trị output hay không. Các giá trị của x mà tại đó $f(x)$ = 0 được gọi là các nghiệm của hàm số. Ví dụ, các nghiệm của hàm số $f(x)$ =\(x^2 - 4\) là x = \(\pm 2\). Các nghiệm xác định vị trí mà đồ thị của $f$ cắt trục hoành, điều này cung cấp cho chúng ta thêm thông tin về hình dạng của đồ thị hàm số. Đồ thị của một hàm số có thể không bao giờ cắt trục hoành, hoặc nó có thể cắt nhiều lần (hoặc thậm chí vô số lần).
+
+\par
+\vspace{10pt}
+
+Một điểm khác ta cần quan tâm là giao điểm với trục tung (nếu có). Giao điểm với trục tung có toạ độ (0, $f(0)$).
+
+\par
+\vspace{10pt}
+
+Vì một hàm số chỉ có duy nhất một giá trị output cho mỗi giá trị input, nên đồ thị của một hàm số chỉ có thể có tối đa một giao điểm với trục tung. Nếu x = 0 thuộc miền xác định của hàm số $f$, thì $f$ có đúng một giao điểm với trục tung. Nếu x = 0 không thuộc miền xác định của $f$, thì $f$ không có giao điểm với trục tung. Tương tự, đối với bất kỳ số thực $c$ nào, nếu $c$ thuộc miền xác định của $f$, thì có đúng một giá trị đầu ra $f(c)$, và đường thẳng x = $c$ cắt đồ thị của $f$ đúng một lần. Mặt khác, nếu $c$ không thuộc miền xác định của $f$, thì $f(c)$ không xác định và đường thẳng x = $c$ không cắt đồ thị của $f$. Tính chất này được tóm tắt trong phép thử đường thẳng đứng 
+(\textbf{vertical line test}).
+\vspace{5pt}
+\begin{tcolorbox}[
+    colframe=blue!10,      % Màu viền
+    colback=blue!5,    % Màu nền (xan nhạt)
+    coltitle=black,     % Màu chữ tiêu đề
+    fonttitle=\bfseries,% Chữ đậm cho tiêu đề
+    title=Rule: Vertical line test    % Tiêu đề của hộp
+    ]
+Cho một hàm số $f$, mọi đường thẳng đứng song song với trục tung cắt đồ thị của $f$ không quá một lần. Nếu bất kỳ đường thẳng đứng nào cắt một tập hợp các điểm nhiều hơn một lần, thì tập hợp các điểm đó không biểu diễn một hàm số. 
+\end{tcolorbox}
+
+\clearpage
+Chúng ta có thể sử dụng phép thử này để xác định xem một tập hợp các điểm đã vẽ có biểu diễn đồ thị của một hàm số hay không (\textbf{Hình 1.7}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình7.png}
+    \caption{(a) tập hợp các điểm biểu diễn một đồ thị của hàm số vì một đường thẳng đứng bất kỳ cắt đồ thị hàm số tại 1 điểm duy nhất. (b) Tập hợp các điểm không biểu diễn một đồ thị của hàm số do với một đường thẳng đứng bất kỳ cắt qua đồ thị nhiều hơn 1 điểm.}
+    \label{fig:enter-label}
+\end{figure}
+
+\vspace{10pt}
+Ồ wow, vậy đường tròn thì sao, rõ ràng chúng ta có 'quy tăc' để xác định một điểm nào đó nằm trên mặt phẳng toạ độ $Oxy$ có thuộc đường tròn với bán kính $r$ cho trước hay không. Nhưng ta không nói đường tròn biểu diễn một hàm số. Tại sao vậy ?
+\par
+\vspace{10pt}
+Theo định nghĩa của hàm số, với một giá trị input chỉ cho duy nhất 1 giá trị output. Tức là khi ta kẻ một đường thẳng đứng bất kỳ, đường thẳng này chỉ cắt qua đồ thị của hàm số tại 1 điểm duy nhất. Tập hợp các điểm biểu diễn hình tròn trên mặt phẳng toạ độ thị không, \textbf{Hình 1.8}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình8.png}
+    \caption{Tập hợp các điểm biểu diễn đường tròn không phải là một đồ thị của hàm số }
+    \label{fig:enter-label}
+\end{figure}
+
+\clearpage
+Vậy đường tròn biểu diễn cái gì ? Một mối quan hệ - mối quan hệ giữa các điểm trên mặt phẳng toạ độ. Quan hệ hay cái 'quy tắc' mà ban đầu chúng ta hiểu chính là tất cả các điểm trên đường tròn cách đều tâm một khoảng bằng nhau (bằng bán kinh). 
+\par
+\vspace{10pt}
+Mối quan hệ này được biểu diễn bằng một \textbf{phương trình đường tròn} tâm $O(0,0)$ bán kính $R$: \(x^2 + y^2 = R^2\). Phương trình này cho biết tập hợp tất cả các điểm $(x,y)$ thoả mãn điều kiện cách gốc toạ độ một khoảng bằng $R$.
+
+\begin{tcolorbox}
+    [
+    colframe=blue!10,      % Màu viền
+    colback=blue!10,    % Màu nền (xan nhạt)
+    ]
+\textbf{Bài toán về quả bóng rơi tự do}    
+\end{tcolorbox}
+
+Nếu một quả bóng được thả rơi từ độ cao 100ft, độ cao $s$ của nó tại thời điểm $t$ được tính bằng hàm $s(t)$ = \(-16t^2 + 100\), trong đó $s$ được đo bằng feet và $t$ được đo bằng giây. Miền giới hạn trong khoảng $[0,c]$, trong đó $t$ = 0 là thời điểm quả bóng rơi và $t = c$ là thời điểm quả bóng chạm đất. Ta có đồ thị của hàm số rơi tự do như sau:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình9.png}
+    \caption{Đồ thị của hàm số $s(t)$ = \(-16t^2 + 100\) }
+    \label{fig:enter-label}
+\end{figure}
+\vspace{10pt}
+Dựa vào đồ thị \textbf{Hình 1.9}, ta thấy giá trị của $s(t)$ giảm dần khi giá trị $t$ tăng dần. Một hàm có tính chất như vậy được gọi làm hàm nghịch biến (\textbf{decreasing function}). Ngược lại, một hàm số có giá trị $f(x)$ tăng lên khi giá trị của $x$ tăng lên được coi là một hàm đồng biến (\textbf{increasing function}). Tuy nhiên, cần lưu ý rằng một hàm số có thể tăng hoặc giảm ở những khoảng khác nhau. Ví dụ như hàm nhiệt độ ở \textbf{Hình 1.5}, ta có thể thấy rằng hàm số nghịch biến trên khoảng (0,4) và (14,23), đồng biến trên khoảng (4,14).
+
+\clearpage
+\begin{tcolorbox}[
+    colframe=blue!10,      % Màu viền
+    colback=blue!5,    % Màu nền (xan nhạt)
+    coltitle=black,     % Màu chữ tiêu đề
+    fonttitle=\bfseries,% Chữ đậm cho tiêu đề
+    title=Định nghĩa    % Tiêu đề của hộp
+    ]
+Hàm $f$ được gọi là đồng biến trên khoảng $I$ nếu với mọi $x1, x2$ \(\in I\)
+
+\begin{center}
+   \(f(x_1) \leq f(x_2)\) khi $x_1 < x_2$
+\end{center}
+
+Hàm $f$ được gọi là đồng biến nghiêm ngặt (\textbf{strictly increasing}) trên khoảng $I$ nếu với mọi $x1, x2$ \(\in I\)
+
+\begin{center}
+   \(f(x_1) < f(x_2)\) khi $x_1 < x_2$
+\end{center}
+
+Hàm $f$ được gọi là nghịch biến trên khoảng $I$ nếu với mọi $x1, x2$ \(\in I\)
+
+\begin{center}
+   \(f(x_1) \geq f(x_2)\) khi $x_1 < x_2$
+\end{center}
+
+Hàm $f$ được gọi là nghịch biến nghiêm ngặt (\textbf{strictly decreasing}) trên khoảng $I$ nếu với mọi $x1, x2$ \(\in I\)
+
+\begin{center}
+   \(f(x_1) > f(x_2)\) khi $x_1 < x_2$
+\end{center}
+
+\end{tcolorbox}
+
+\subsection{Hàm hợp}
+
+Sau khi ôn lại những đặc tính cơ bản của hàm số, chúng ta hãy xem những đặc tính này sẽ thay đổi như thế nào khi chúng ta kết hợp các hàm số theo nhiều cách khác nhau, bằng cách sử dụng các phép toán để tạo ra các hàm số mới. Ví dụ, nếu chi phí sản xuất $x$ sản phẩm của một công ty được mô tả bởi hàm số $C(x)$ và doanh thu tạo ra từ việc bán $x$ sản phẩm được mô tả bởi hàm số $R(x)$, thì lợi nhuận từ việc sản xuất và bán $x$ sản phẩm được định nghĩa là $P(x)$ = $R(x)$ - $C(x)$.
+\par
+\vspace{10pt}
+Bằng cách lấy hiệu của hai hàm số, chúng ta đã tạo ra một hàm số mới.
+\par
+\vspace{10pt}
+Ngoài ra, chúng ta có thể tạo ra một hàm số mới bằng cách ghép hai hàm số với nhau. Ví dụ, với hai hàm số $f(x)$ = \(x^2\) và $g(x)$ = 3x + 1, hàm hợp $f \circ g$ được định nghĩa sao cho 
+
+\begin{center}
+    $(f \circ g)(x)$ = $f(g(x))$ = \((g(x))^2\) = \((3x + 1)^2\).
+\end{center}
+
+Hàm hợp $g \circ f$ được định nghĩa là:
+
+\begin{center}
+    $(g \circ f)(x)$ = $g(f(x))$ = 3$f(x)$ + 1 = \(3x^2 + 1\)
+\end{center}
+
+\subsubsection{Kết hợp hàm số với các phép toán (combining functions)}
+
+Với hai hàm số $f$ và $g$, chúng ta có thể định nghĩa bốn hàm số mới:
+
+\begin{align*} 
+(f + g)(x) &= f(x) + g(x) \quad \\ 
+(f - g)(x) &= f(x) - g(x) \quad \\ 
+(f \circ g)(x) &= f(x)g(x) \quad \\ \left( \frac{f}{g} \right)(x) &= \frac{f(x)}{g(x)} \quad \text{với } g(x) \neq 0 \quad 
+\end{align*} 
+
+\clearpage
+
+Cho hàm số $f(x) = 2x - 3$ và $g(x) = x^2 -1$ \\
+a. $(f+g)(x)$ = (2x - 3) + $(x^2 - 1)$ = $x^2 + 2x -4$ \\
+b. $(f-g)(x)$ = (2x - 3) - $(x^2 -1)$ = $-x^2 +2x -2$ \\
+c. $(f.g)(x)$ = $(2x - 3)(x^2 - 1) = 2x^3 -3x^2 -2x +3$
+
+\subsubsection{Hàm hợp (composition function)}
+
+Khi ta hợp hai hàm số, ta thực hiện một hàm số lên kết quả của hàm số khác. Ví dụ, giả sử nhiệt độ $T$ trong một ngày được mô tả theo thời gian $t$ (tính bằng giờ sau nửa đêm) như trong Bảng 1.1. Giả sử chi phí $c$ để sưởi ấm hoặc làm mát một tòa nhà trong 1 giờ có thể được biểu diễn theo nhiệt độ $T$. Kết hợp hai hàm số này, ta có thể mô tả chi phí sưởi ấm hoặc làm mát một tòa nhà theo thời gian bằng cách tính $C(T(t))$. Chúng ta đã định nghĩa một hàm số mới, ký hiệu là $C \circ T$, được xác định sao cho $(C \circ T)(t)$ = $C(T(t))$ với mọi $t$ trong miền xác định của $T$. Hàm số mới này được gọi là hàm hợp.
+\par
+\vspace{10pt}
+Chúng ta lưu ý rằng vì chi phí là hàm của nhiệt độ và nhiệt độ là hàm của thời gian, nên việc định nghĩa hàm số mới $(C \circ T)(t)$ là hợp lý. Tuy nhiên, việc xét $(T \circ C)(t)$ là không hợp lý vì nhiệt độ không phải là hàm của chi phí.
+\vspace{10pt}
+\begin{tcolorbox}[
+    colframe=blue!10,      % Màu viền
+    colback=blue!5,    % Màu nền (xan nhạt)
+    coltitle=black,     % Màu chữ tiêu đề
+    fonttitle=\bfseries,% Chữ đậm cho tiêu đề
+    title=Định nghĩa    % Tiêu đề của hộp
+    ]
+Xét hàm số $f$ có miền xác định $A$ và tập giá trị $B$, và hàm số $g$ có miền xác định $D$ và tập giá trị $E$. Nếu $B$ là một tập con của $D$ thì hàm hợp $(g \circ f)(x)$ là hàm số có miền xác định $A$ sao cho
+
+\begin{center}
+    $(g \circ f)(x) = g(f(x))$
+\end{center}
+
+\end{tcolorbox}
+\vspace{10pt}
+Một hàm hợp $g \circ f$ có thể được xem qua hai bước. Đầu tiên, hàm số $f$ ánh xạ mỗi giá trị input $x$ trong miền xác định của $f$ vào giá trị đầu ra $f(x)$ trong tập giá trị của $f$. Thứ hai, vì tập giá trị của $f$ là một tập con của miền xác định của $g$, nên giá trị output $f(x)$ là một phần tử trong miền xác định của $g$, và do đó nó được ánh xạ vào một giá trị output $g(f(x))$ trong tập giá trị của $g$. Trong Hình 1.10, chúng ta thấy một hình ảnh trực quan của một hàm hợp."
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình10.png}
+    \caption{ $(g\circ f)(1) = 4, 
+ (g\circ f)(2) = 5, (g\circ f)(3) = 4$ }
+    \label{fig:enter-label}
+\end{figure}
+
+\clearpage
+\subsection{Tính đối xứng của hàm số (symmetry function)}
+
+Đồ thị của một số hàm số có các tính chất đối xứng giúp chúng ta hiểu rõ hơn về hàm số và hình dạng của đồ thị.
+\par
+\vspace{10pt}
+Ví dụ, hãy xét hàm số $f(x) = x^4 - 2x^2 - 3$ được vẽ trong Hình 1.11(a). Nếu ta lấy phần đồ thị nằm bên phải trục $Oy$ và lật nó qua trục $Oy$, nó sẽ trùng khít với phần đồ thị nằm bên trái trục $Oy$. Trong trường hợp này, ta nói hàm số có tính đối xứng trục $Oy$.
+\par
+\vspace{10pt}
+Mặt khác, hãy xét hàm số $f(x) = x^3 - 4x$ được vẽ trong Hình 1.11(b). Nếu ta quay đồ thị 180° quanh gốc tọa độ, đồ thị mới sẽ trông giống hệt đồ thị ban đầu. Trong trường hợp này, ta nói hàm số có tính đối xứng tâm $O$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{image/hình11.png}
+    \caption{(a) Hàm số có tính đối xứng trục $Oy$ (b) Hàm số có tính đối xứng tâm $O$  }
+    \label{fig:enter-label}
+\end{figure}
+
+Nếu chúng ta có sẵn đồ thị của hàm số, rất dễ để nhận biết liệu đồ thị đó có tính đối xứng hay không. Nhưng nếu không có đồ thị, làm thế nào để chúng ta xác định bằng phương pháp đại số xem một hàm số $f$ có tính đối xứng? Nhìn vào Hình 1.11a, chúng ta thấy rằng vì $f$ đối xứng qua trục $y$ nên nếu điểm $(x, y)$ nằm trên đồ thị, thì điểm $(-x, y)$ cũng nằm trên đồ thị. Nói cách khác, $f(-x)$ = $f(x)$. Nếu một hàm số $f$ có tính chất này, chúng ta nói $f$ là một hàm số chẵn (\textbf{even function}), có tính đối xứng qua trục $y$. Ví dụ, $f(x) = x²$ là hàm chẵn vì
+\begin{center}
+    $f(-x) = (-x)² = x² = f(x)$.
+\end{center}
+
+Ngược lại, nhìn vào Hình 1.11b, nếu một hàm số $f$ đối xứng qua gốc tọa độ, thì bất cứ điểm $(x, y)$ nằm trên đồ thị, điểm $(-x, -y)$ cũng nằm trên đồ thị. Nói cách khác, $f(-x) = -f(x)$. Nếu $f$ có tính chất này, chúng ta nói $f$ là một hàm số lẻ (\textbf{odd function}), có tính đối xứng qua gốc tọa độ. Ví dụ, $f(x) = x³$ là hàm lẻ vì
+\begin{center}
+    $f(-x) = (-x)³ = -x³ = -f(x)$.
+\end{center}
+
+\clearpage
+
+\begin{tcolorbox}[
+    colframe=blue!10,      % Màu viền
+    colback=blue!5,    % Màu nền (xan nhạt)
+    coltitle=black,     % Màu chữ tiêu đề
+    fonttitle=\bfseries,% Chữ đậm cho tiêu đề
+    title=Định nghĩa    % Tiêu đề của hộp
+    ]
+Nếu $f(x) = f(-x)$ với mọi $x$ trong tập xác định của $f$, thì $f$ là một hàm số chẵn. Một hàm số chẵn đối xứng qua trục $y$.
+\par
+\vspace{10pt}
+Nếu $f(-x) = -f(x)$ với mọi $x$ trong tập xác định của $f$, thì $f$ là một hàm số lẻ. Một hàm số lẻ đối xứng qua gốc tọa độ.
+\end{tcolorbox}
+\vspace{10pt}
+Một hàm đối xứng thường xuất hiện là hàm giá trị tuyệt đối (absolute value function), được viết là \(\abs{x}\). Hàm giá trị tuyệt đối được định nghĩa là
+
+\begin{center}
+     $f(x) =
+ \begin{cases}
+      -x, & x < 0 \\
+      x, & x \geq 0 \\
+ \end{cases}$
+\end{center}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image/hình12.png}
+    \caption{Đồ thị của hàm trị tuyệt đối: $f(x) = \abs{x}$ }
+    \label{fig:enter-label}
+\end{figure}
+
+Một số học sinh mô tả hàm này bằng cách nói rằng nó "biến mọi thứ thành dương". Theo định nghĩa của hàm giá trị tuyệt đối, chúng ta thấy rằng nếu $x < 0$ thì $|x| = -x > 0$ và nếu $x > 0$ thì $|x| = x > 0$. Tuy nhiên, với x = 0 thì $|x|$ = 0. Do đó, chính xác hơn là nói rằng với tất cả các input khác không, đầu ra là dương, nhưng nếu x = 0, đầu ra $|x| = 0$. Chúng ta kết luận rằng tập giá trị của hàm giá trị tuyệt đối là ${y | y ≥ 0}$. Trong Hình 1.12, chúng ta thấy rằng hàm giá trị tuyệt đối đối xứng qua trục y và do đó là một hàm chẵn.
+
+\end{document}
