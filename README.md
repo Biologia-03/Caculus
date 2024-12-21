@@ -1,0 +1,4 @@
+Hello, xinh chào mọi người, ở thời điểm làm project này thì mình đang là sinh viên y đa khoa năm thứ 4, chưa biết chữ gì về code, cũng không có một cái base về tin học gì cả, mình thực hiện project này chủ yếu là để tiếp cận và rèn luyện với latex. 
+Trình độ tiếng anh của mình cũng không có gì cao siêu, chủ yếu dựa vào các bot AI để hỗ trợ, cộng với việc đã 4 năm mình không đụng vào toán học nên có thể những thuật ngữ chuyên ngành không được chỉnh chu, chính xác, văn phong nhiều chỗ không tự nhiên, mong mọi người góp ý.
+Giờ nhìn lại code thì trông nó khá lộn xộn, còn chưa tối ưu do dùng AI để chắp vá, vừa học vừa làm nhưng mình cũng nhìn ra sự tiến bộ khi so sánh các dòng code đầu tiên vơi những dòng code về sau chứng tỏ bản thân mình đang tiến bộ.
+Hi vọng mình kiên trì để hoàn thành project này, chapter cuối sẽ là những dòng code tối ưu và được tổ chức hợp lý
